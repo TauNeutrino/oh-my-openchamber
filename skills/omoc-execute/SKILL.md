@@ -1,6 +1,6 @@
 ---
 name: omoc-execute
-description: Execute an approved plan document as code. Implements the plan; does not create it. Registers todos, works checkbox by checkbox with parallel swarms, verifies with five gates per checkbox, and lets only the conductor merge. Use after omoc-plan produced an approved plan.
+description: Execute an approved plan document as code. Implements the plan; does not create it. Runs as its own goal-armed session (created by the conductor), registers todos, works checkbox by checkbox with parallel swarms, verifies with five gates per checkbox, and only the execute-run merges. Use after omoc-plan produced an approved plan.
 ---
 
 # omoc-execute — the plan becomes code
@@ -11,7 +11,7 @@ omoc-execute implements the plan as code; it does not create the plan. It consum
 
 One todo per plan checkbox, native in project knowledge; **every todo carries the plan file's path** — that is the linkage. The plan document itself tracks session references and progress, so a fresh session can resume the same plan: read the checkboxes, continue where the evidence ledger stands.
 
-**Run as a goal — armed by the human, not the agent.** The agent cannot set a goal; only the UI (the plan's "Run as goal" dialog or the composer target button) and the CLI (`--goal`) can. So the execute-run starts with the user arming it: the **plan content itself is the objective** (not "implement plan X" — the audit sees nothing in a pointer), the token budget is the plan's estimate, the turn cap is the expected iteration count. If the run starts without a goal while checkboxes are open, the conductor asks the user to arm it — and works on under the continuation discipline until then. Once armed, the server-side audit keeps the run awake until the plan's end-state is verifiably reached: it reads only the objective and the latest reply, so keep the objective self-contained and end every turn with your own evidence lines: *Done / Verified / Remaining / Needs from user.* The agent cannot settle its own goal; the audit is the only termination authority (besides hard stops: turn errors, truncation, the auto-turn cap). Child sessions stay goal-free — one goal per execute-run, no double steering. On `budgetLimited`: ask the user to raise the budget; the checkboxes carry the progress.
+**Run as a goal — born armed, no human click.** An agent cannot arm a goal on its own running session — but it CAN create a session with a goal: `session.create` accepts `goal` + `goalTokenBudget` (the user adopting this pack is the standing authority; arming execute-runs is what "minimal human intervention" means here). So the execute-run is **its own child session**, created by the conductor: the **plan content is the objective** (not "implement plan X" — the audit sees nothing in a pointer), `goalTokenBudget` = the plan's estimate, model from the conductor chain, auto-turn cap set to the expected iteration count. The server-side audit keeps that run awake until the plan's end-state is verifiably reached: it reads only the objective and the latest reply, so the objective stays self-contained and every turn ends with evidence lines — *Done / Verified / Remaining / Needs from user*. The run cannot settle its own goal; the audit is the only termination authority besides the hard stops. Workers stay goal-free — one goal per execute-run, no double steering. On `budgetLimited` the run reports to the conductor, which asks the human for a raise; the checkboxes carry the progress.
 
 ## Continuation discipline
 
@@ -37,4 +37,4 @@ The worker's done-claim is verified by an independent reviewer before the todo i
 
 ## 5. Waves and merging
 
-Each plan wave works in its own git worktree (created by the conductor) and lands on the integration branch once its checkboxes are verified. **Only the conductor merges.** Git discipline follows the git-master skill; the ship flow (PR open until merged, CI fixes run automatically) arrives as a native workflow after v1.
+Each plan wave works in its own git worktree (created by the conductor) and lands on the integration branch once its checkboxes are verified. **Only the execute-run merges.** Git discipline follows the git-master skill; the ship flow (PR open until merged, CI fixes run automatically) arrives as a native workflow after v1.
