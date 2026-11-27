@@ -57,6 +57,8 @@ Gap (GAP-<n>): <was heute fehlt>
   - **Acceptance criteria:** <agent-ausführbar>
   - **QA scenarios:** <tool + Schritte + erwartetes Ergebnis>
   - **Route:** <persona → tier/model | risk | because>
+  - **Skills:** <optional task-specific skill names/sections, or none>
+  - **Return contract:** <templates/return-contract.md>
   - **Gates:** <quick 2+5 | standard 1+2+3+5 | risky 1+2+3+4+5>
   - **State:** <draft | ready | running | blocked | completed | aborted>
   - **Evidence:** <Zusammenfassung + Pfad unter evidence/>

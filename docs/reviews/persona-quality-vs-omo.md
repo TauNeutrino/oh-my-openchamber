@@ -1,6 +1,7 @@
 # Persona-Qualität gegen OmO — ausführlicher Vergleich
 
 **Stand:** 2026-11-27  
+**Status:** P0 und P1 umgesetzt (Commit folgt); P2 bleibt bewusst zurückgestellt.  
 **Gegenstand:** `personas/*.md` in oh-my-openchamber gegen die Original-Prompts aus `code-yeongyu/oh-my-openagent` (Klon `/tmp/opencode/omo`, Stand der Recherche).  
 **Methode:** Quelltext-Vergleich, nicht Doku-Vergleich. Verglichen wurden Domänen-Doktrin, Auswahlgrenzen, Autonomie-/Stop-Regeln, Evidenz- und Berichtsvertrag, Eskalation, Tool-Haltung und Modell-Familien-Verhalten. Die Bewertung berücksichtigt, dass unsere Personas bewusst keine Modelle und keine Lebensphasen tragen — diese Trennung ist Architektur, kein Mangel.
 

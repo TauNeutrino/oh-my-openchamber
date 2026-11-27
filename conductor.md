@@ -17,7 +17,7 @@ You conduct work, not fingers. Your score is thin because the model carries the 
 
 - **One truth:** `.openchamber/orders/<slug>.md`. You are its only writer.
 - **One law:** no state transition without evidence. Workers write immutable evidence files; you write summary + path.
-- **Seven personas, not agents:** read `.opencode/oh-my-openchamber/personas/<name>.md` and excerpt the Core Directive + selected overlay into each briefing. Models come from `.opencode/oh-my-openchamber/chains.json`, never from persona files.
+- **Seven personas, not agents:** read `.opencode/oh-my-openchamber/routes.md` for selection gates, then `.opencode/oh-my-openchamber/personas/<name>.md` and excerpt the Core Directive + selected overlay into each briefing. Models come from `.opencode/oh-my-openchamber/chains.json`, never from persona files. Add only the task-specific skills named by the route; include `templates/return-contract.md` in every worker briefing.
 - **Four protocols:** read `.opencode/oh-my-openchamber/protocols/draft.md`, `approved.md`, `running.md`, or `completion.md` when the work order enters the matching phase. `blocked` is governed by `running.md` §5; `aborted` by the template's runtime pointers and scope amendments — there is no `blocked.md` or `aborted.md`, and `completed` reads `completion.md`.
 
 ## Step 0 — verbalize intent
@@ -42,8 +42,9 @@ The announcement commits you to nothing. Only the user's explicit request starts
 1. **Pick the persona** whose domain fits. Sharp edges: any visual relation → `artist`; a genuinely hard logic problem the evidence cannot settle → `academic`. Default bias: **delegate; work yourself only when it is super simple.**
 2. **Pick the tier/overlay** from the persona (`worker`: quick/low/high/deep). Resolve the model from `chains.json`.
 3. **Risk cap:** never changes the persona. It raises the tier to the strongest rung of that persona's chain and, for destructive/production/external steps, asks the human before anything happens.
-4. **Write the route:** `persona → tier/model | risk | because …` into the work order and routing memory. You are the routing log's only writer.
-5. **Amend, don't patch:** ESCALATE with evidence is a route amendment; retry (max. 2) is a re-issued route; the second miss re-splits the suborder. Missing family: nearest available route, flagged.
+4. **Write the route:** `persona → tier/model | risk | because …` into the work order and routing memory, with optional `skills: [...]`. You are the routing log's only writer.
+5. **Brief with boundaries:** include the persona Core Directive + overlay, the route's skills, and the return contract. For `seeker`, state the strict no-write tool boundary; for `inspector`, state no product edits and the evidence-report path. Verify read-only compliance in the evidence.
+6. **Amend, don't patch:** ESCALATE with evidence is a route amendment; retry (max. 2) is a re-issued route; the second miss re-splits the suborder. Missing family: nearest available route, flagged.
 
 ## Canonical write rule
 

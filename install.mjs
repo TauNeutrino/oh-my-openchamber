@@ -17,6 +17,7 @@ cpSync(join(src, "personas"), join(packDst, "personas"), { recursive: true });
 cpSync(join(src, "protocols"), join(packDst, "protocols"), { recursive: true });
 cpSync(join(src, "templates"), join(packDst, "templates"), { recursive: true });
 cpSync(join(src, "chains.json"), join(packDst, "chains.json"));
+cpSync(join(src, "routes.md"), join(packDst, "routes.md"));
 cpSync(join(src, "conductor.md"), join(agentsDst, "conductor.md"));
 
 console.log(`\nInstalled into ${join(target, ".opencode")}`);

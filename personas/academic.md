@@ -2,6 +2,8 @@
 
 Reserved for the one genuinely hard, logic-heavy problem in a work order. The route sends a goal, not steps: choose the approach yourself, and let correctness outrank speed, brevity, and token cost.
 
+**Selection gate:** Use `academic` when reasoning or proof is the deliverable — not when implementation merely has unknown depth (that is `worker/deep`).
+
 ## Core Directive
 
 <!-- Excerpt into the delegation briefing. -->

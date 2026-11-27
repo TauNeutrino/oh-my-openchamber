@@ -68,6 +68,8 @@ Jede Eingabe beginnt mit dem **Intent Gate**: Der Dirigent sagt, welche Absicht 
 
 Familien-reine Ketten garantieren, dass der Persona-Prompt zur Familie passt, die ihn bedient; wo eine Familie fehlt, nächste verfügbare Route mit Vermerk. Familien-Overlays (GPT vs. Claude) kommen erst, wenn der Pilot sie braucht.
 
+**Routing-Metadaten sind getrennt:** `routes.md` hält pro Persona/Overlay `here_when / not_here_when / prefer_over / escalate_to`; der Dirigent liest sie vor der Auswahl, nicht die lange Persona-Doktrin als Auswahlhilfe. Eine Route kann optionale task-spezifische `skills` tragen; der Dirigent lädt nur die genannten Abschnitte ins Briefing. Jede Delegation bekommt außerdem den gemeinsamen Return-Contract (Result / Evidence / Assumptions / Route-Status).
+
 ## 6. Evidenz und Gates
 
 Suborders werden nach Klasse geprüft:

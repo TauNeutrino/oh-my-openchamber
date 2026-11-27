@@ -10,6 +10,7 @@ Where [OmO](https://omo.dev) built its own orchestration machine, oh-my-opencham
 - **One truth:** `.openchamber/orders/<slug>.md` — versioned, reviewable, compaction-safe. The conductor is its only writer.
 - **One law:** no state transition without evidence. Workers write immutable evidence files; the conductor writes summary + path.
 - **Seven personas:** `seeker` (codebase/docs overlays), `worker` (quick/low/high/deep tier overlays), `artist`, `writer`, `academic`, `architect`, `inspector` (plan-review/execution-review overlays). No model ids live in persona files; `chains.json` resolves them per route.
+- **Routing metadata:** `routes.md` holds selection gates separately from persona doctrine; routes may carry task-specific `skills`, and every worker returns through `templates/return-contract.md`.
 - **Four state protocols:** `draft`, `approved`, `running`, `completion`. Planning and execution are phases of one work order, not separate skills.
 - **Autonomy:** the conductor creates the execute run as a goal-armed child session; the native audit keeps it awake; humans are involved only for risk, unresolved blockers, or budget.
 
@@ -23,7 +24,7 @@ No installer software, no bash requirement — two ways, both work on Windows, L
 Install oh-my-openchamber by following the instructions in
 https://github.com/TauNeutrino/oh-my-openchamber/blob/main/README.md:
 clone the repository, copy conductor.md into <project>/.opencode/agents/,
-and personas/, protocols/, templates/ plus chains.json into
+and personas/, protocols/, templates/, routes.md plus chains.json into
 <project>/.opencode/oh-my-openchamber/. Then start a session with the
 "conductor" agent and make it a Lead.
 ```

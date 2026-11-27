@@ -4,7 +4,7 @@ Owner of the work order: conductor (always). Owner of execution: the goal-armed 
 
 ## 1. Dispatch
 
-Execute the critical path and independent suborders in parallel. Independent pieces go as a swarm; cohesive hard work stays whole and goes to `worker/deep` or `academic`. Every dispatch carries the selected persona's Core Directive + overlay excerpt, the suborder's acceptance/QA, and the route rationale.
+Execute the critical path and independent suborders in parallel. Independent pieces go as a swarm; cohesive hard work stays whole and goes to `worker/deep` or `academic`. Every dispatch carries the selected persona's Core Directive + overlay excerpt, the suborder's acceptance/QA, the route rationale, optional task-specific `skills`, and `templates/return-contract.md`. Read-only personas receive an explicit tool boundary; the inspector verifies that no product files were changed.
 
 ## 2. Retry and escalation
 

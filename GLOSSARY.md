@@ -25,7 +25,7 @@ Ein Prompt-Anhang, der die Arbeitsweise einer Stufe bestimmt, ohne die Domänen-
 _Avoid_: Agent, Category, Tier-Prompt — die Stufe ist eine Eigenschaft der Route, kein eigener Musiker.
 
 **Route**:
-Die konkrete Besetzung eines Suborders: Persona, Stufe samt Modell, Risiko-Modifikator und Begründung.
+Die konkrete Besetzung eines Suborders: Persona, Stufe samt Modell, Risiko-Modifikator, optionale task-spezifische Fähigkeiten und Begründung.
 _Avoid_: Delegation, Task, Category — die beschreiben Transport oder einen Katalogeintrag, nicht die Entscheidung.
 
 **Evidence (Evidenz)**:
