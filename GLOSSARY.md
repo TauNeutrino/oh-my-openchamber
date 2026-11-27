@@ -48,6 +48,10 @@ _Avoid_: Paused — pausiert ist eine bewusste Entscheidung, blockiert ist ein u
 Der Orchestrator, der Absicht und Risiko verwaltet, Routen setzt und den kanonischen WorkOrder schreibt; er ist keine Persona.
 _Avoid_: Lead-Agent, Worker — er spielt kein Instrument, er leitet.
 
+**Execution continuation (Ausführungs-Fortsetzung)**:
+Eine neue Session, in der derselbe Dirigent mit derselben Persona, denselben Regeln und derselben Schreiberschaft weiterarbeitet — nur mit einem Goal versehen. Sie ist keine eigene Rolle und kein Kind-Agent.
+_Avoid_: Execute run, Kind-Session, zweiter Dirigent — das waren Namen für einen Transport-Adapter, nicht für ein Domänenobjekt.
+
 **Adapter**:
 Eine native OpenChamber-Mechanik, die einen Teil des WorkOrder-Lebenszyklus ausführt oder darstellt, ohne selbst das Domänenmodell zu bilden.
 _Avoid_: Plugin, Engine — das Projekt baut keine eigene Ausführungsmaschine.

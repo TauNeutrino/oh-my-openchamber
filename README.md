@@ -12,13 +12,13 @@ Where [OmO](https://omo.dev) built its own orchestration machine, oh-my-opencham
 - **Seven personas:** `seeker` (codebase/docs overlays), `worker` (quick/low/high/deep tier overlays), `artist`, `writer`, `academic`, `architect`, `inspector` (plan-review/execution-review overlays). No model ids live in persona files; `chains.json` resolves them per route.
 - **Routing metadata:** `routes.md` holds selection gates separately from persona doctrine; routes may carry task-specific `skills`, and every worker returns through `templates/return-contract.md`.
 - **Four state protocols:** `draft`, `approved`, `running`, `completion`. Planning and execution are phases of one work order, not separate skills.
-- **Autonomy:** the conductor creates the execute run as a goal-armed child session; the native audit keeps it awake; humans are involved only for risk, unresolved blockers, or budget.
+- **Autonomy:** the conductor continues itself in a goal-armed execution session — same persona, same rules, same canonical-write authority; the native audit keeps it awake. Humans are involved only for risk, unresolved blockers, or budget.
 
 ## Architecture
 
 ![oh-my-openchamber architecture v2](docs/diagrams/architecture-v2.png)
 
-The editable source is [`docs/diagrams/architecture-v2.svg`](docs/diagrams/architecture-v2.svg). The diagram shows the canonical WorkOrder, the conductor as sole writer, the seven personas and their routes, the goal-armed execute run, the evidence loop, and OpenChamber's native adapters.
+The editable source is [`docs/diagrams/architecture-v2.svg`](docs/diagrams/architecture-v2.svg). The diagram shows the canonical WorkOrder, the conductor as sole writer, the seven personas and their routes, the conductor's goal-armed execution continuation, the evidence loop, and OpenChamber's native adapters.
 
 ## Install
 

@@ -1,6 +1,6 @@
 # Protocol: running
 
-Owner of the work order: conductor (always). Owner of execution: the goal-armed execute run. Workers own only their evidence files.
+Owner of the work order: conductor — including its execution continuation. Workers own only their evidence files.
 
 ## 1. Dispatch
 
@@ -31,7 +31,7 @@ There is no sixth "human" gate. Human contact comes from the risk cap, unresolve
 
 ## 4. Evidence and the canonical file
 
-Workers and the execute run write immutable evidence under `.openchamber/orders/<slug>/evidence/`. While running, the conductor writes only **summary + path** into the work order. On completion, the conductor verifies the evidence (execution-review), writes the summary, and performs the state transition. Workers never write the work order.
+Workers write immutable evidence under `.openchamber/orders/<slug>/evidence/`. While running, the conductor writes only **summary + path** into the work order. On completion, the conductor verifies the evidence (execution-review), writes the summary, and performs the state transition. Workers never write the work order.
 
 ## 5. Blocked triage
 
@@ -43,4 +43,4 @@ While the approved plan has unchecked suborders, steer every new input back to i
 
 ## 7. Budget and merge
 
-On `budgetLimited`, the execute run reports to the conductor, which asks the human for a raise; progress lives in the work order. Each wave works in its own worktree. **Only the execute run merges**, after its checkboxes carry evidence. On settle, one notification reaches the human.
+On `budgetLimited`, the conductor asks the human for a raise; progress lives in the work order. Each wave works in its own worktree. **Only the conductor merges**, after its checkboxes carry evidence. On settle, one notification reaches the human.

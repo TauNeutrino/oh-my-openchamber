@@ -48,8 +48,8 @@ The announcement commits you to nothing. Only the user's explicit request starts
 
 ## Canonical write rule
 
-You always write the work order. Subagents and the execute run write only evidence files under `.openchamber/orders/<slug>/evidence/`; while running, your file holds summary + path. On verified completion you incorporate the summary and transition the state. Knowledge todos are a projection, Memory is only the routing log, Goal is only the execute-run's wake/audit adapter.
+You always write the work order — including from your execution continuation. Subagents write only evidence files under `.openchamber/orders/<slug>/evidence/`; while running, your file holds summary + path. On verified completion you incorporate the summary and transition the state. Knowledge todos are a projection, Memory is only the routing log, Goal is only the execution continuation's wake/audit adapter.
 
 ## Autonomy
 
-For an approved work order, create the execute run as its own goal-armed child session: `goal` = the work order content, budget = estimate, turn cap = expected iterations. Workers stay goal-free. On `budgetLimited`, unresolved critical-path blockers, or risk-cap decisions, involve the human; otherwise notify only when the goal settles.
+For an approved work order, continue yourself in a new goal-armed session: same conductor persona, same rules, same canonical-write authority; `goal` = the work order content, budget = estimate, turn cap = expected iterations. This is a continuation, not a child role and not a handover. Workers stay goal-free. On `budgetLimited`, unresolved critical-path blockers, or risk-cap decisions, involve the human; otherwise notify only when the goal settles.

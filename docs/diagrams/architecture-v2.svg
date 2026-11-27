@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1120" font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1144" font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
   <title>oh-my-openchamber v2 — Architecture</title>
-  <desc>One score, one conductor, seven chairs. The WorkOrder is the single canonical artifact; the Conductor is its only writer; no state transition without evidence. Native OpenChamber mechanics act as adapters.</desc>
+  <desc>One score, one conductor, seven chairs. The WorkOrder is the single canonical artifact; the Conductor is its only writer; no state transition without evidence. Execution is a continuation of the same conductor in a new goal-armed session — no second conductor, no handover. Native OpenChamber mechanics act as adapters.</desc>
 
   <!-- ============ palette ============
     paper   #FAF6EF   panel  #FFFDF8   ink    #22303C
@@ -28,7 +28,7 @@
   </defs>
 
   <!-- ============ background ============ -->
-  <rect x="0" y="0" width="1200" height="1120" fill="#FAF6EF"/>
+  <rect x="0" y="0" width="1200" height="1144" fill="#FAF6EF"/>
 
   <!-- ============ header: a faint musical staff behind the title ============ -->
   <g stroke="#E9E1D1" stroke-width="1">
@@ -75,42 +75,46 @@
     <line x1="600" y1="344" x2="600" y2="354" stroke="#0E7568" stroke-width="2" marker-end="url(#m-teal)"/>
     <line x1="600" y1="398" x2="600" y2="418" stroke="#0E7568" stroke-width="2.5" marker-end="url(#m-teal)"/>
     <!-- roster -> conductor (reads) -->
-    <line x1="390" y1="292" x2="418" y2="292" stroke="#6E7B87" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-mut)"/>
+    <line x1="380" y1="292" x2="418" y2="292" stroke="#6E7B87" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-mut)"/>
     <!-- human -> conductor (approvals / decisions) -->
     <path d="M 950 230 H 810 V 262 H 782" stroke="#22303C" stroke-width="1.5" marker-end="url(#m-ink)"/>
-    <!-- conductor creates the goal-armed execute run -->
+    <!-- conductor continues with goal: same persona, new goal-armed session -->
     <path d="M 780 318 H 850 V 718" stroke="#0E7568" stroke-width="2" marker-end="url(#m-teal)"/>
-    <!-- evidence -> conductor: verifies, writes summary + path, transitions -->
-    <path d="M 1060 720 V 292 H 782" stroke="#6E7B87" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-mut)"/>
-    <!-- execute run -> workers (dispatch) -->
-    <line x1="800" y1="830" x2="800" y2="866" stroke="#22303C" stroke-width="1.8" marker-end="url(#m-ink)"/>
+    <!-- continuation writes the SAME work order: summary + path, state transitions -->
+    <line x1="660" y1="720" x2="660" y2="662" stroke="#0E7568" stroke-width="2" marker-end="url(#m-teal)"/>
+    <!-- evidence -> continuation (verifies); no handoff between conductors -->
+    <path d="M 990 830 V 845 H 942" stroke="#6E7B87" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-mut)"/>
+    <!-- continuation -> workers (dispatch) -->
+    <line x1="800" y1="854" x2="800" y2="890" stroke="#22303C" stroke-width="1.8" marker-end="url(#m-ink)"/>
     <!-- workers -> evidence (write, immutable); hops over the Goal connector -->
-    <path d="M 900 898 H 913 A 6 6 0 0 1 925 898 H 1060 V 832" stroke="#6E7B87" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-mut)"/>
-    <!-- Knowledge adapter -> work order (projection) -->
-    <path d="M 437 992 V 944 H 560 V 662" stroke="#6E7B87" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#m-mut)"/>
-    <!-- Goal adapter -> execute run (wake / audit) -->
-    <line x1="919" y1="992" x2="919" y2="832" stroke="#6E7B87" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#m-mut)"/>
+    <path d="M 900 922 H 913 A 6 6 0 0 1 925 922 H 1060 V 832" stroke="#6E7B87" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-mut)"/>
+    <!-- Knowledge adapter -> work order (projection); takeoff clear of the band heading -->
+    <path d="M 490 1016 V 968 H 540 V 662" stroke="#6E7B87" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#m-mut)"/>
+    <!-- Goal adapter -> continuation (wake / audit) -->
+    <line x1="919" y1="1016" x2="919" y2="856" stroke="#6E7B87" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#m-mut)"/>
   </g>
 
   <!-- connector labels -->
   <text x="612" y="231" font-size="9.5" fill="#7A7264">intent gate — announced, correctable</text>
   <text x="612" y="413" font-size="10" fill="#0E7568" font-weight="bold">writes · transitions state</text>
-  <text x="391" y="285" font-size="9.5" fill="#6E7B87">reads</text>
+  <text x="399" y="285" font-size="9.5" fill="#6E7B87" text-anchor="middle">reads</text>
   <text x="828" y="223" font-size="10" fill="#22303C">approvals · decisions</text>
   <g font-size="10.5" fill="#0E7568">
     <text x="862" y="640" font-weight="bold">on approval:</text>
-    <text x="862" y="656">creates goal-armed</text>
-    <text x="862" y="672">child session</text>
+    <text x="862" y="656">continues with goal</text>
+    <text x="862" y="672">new goal-armed session</text>
+  </g>
+  <g font-size="9.5" fill="#0E7568">
+    <text x="668" y="688">writes summary + path</text>
+    <text x="668" y="702">· state transitions</text>
   </g>
   <g font-size="9.5" fill="#6E7B87">
-    <text x="1068" y="476">conductor verifies</text>
-    <text x="1068" y="491">&#8594; summary + path</text>
-    <text x="1068" y="506">&#8594; state transition</text>
-    <text x="1068" y="872">write</text>
-    <text x="566" y="706">todo projection</text>
-    <text x="926" y="962">wake · audit</text>
+    <text x="948" y="840">verifies</text>
+    <text x="1068" y="876">write</text>
+    <text x="546" y="706">todo projection</text>
+    <text x="926" y="986">wake · audit</text>
   </g>
-  <text x="788" y="853" font-size="10" fill="#22303C" text-anchor="end">dispatch · brief + return contract</text>
+  <text x="788" y="877" font-size="10" fill="#22303C" text-anchor="end">dispatch · brief + return contract</text>
 
   <!-- ============ USER INTENT ============ -->
   <g>
@@ -149,12 +153,12 @@
 
   <!-- ============ THE ROSTER (routes + personas) ============ -->
   <g>
-    <rect x="40" y="240" width="350" height="420" rx="10" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
+    <rect x="40" y="240" width="340" height="420" rx="10" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
     <text x="60" y="272" font-family="DejaVu Serif, Georgia, serif" font-weight="bold" font-size="17" fill="#22303C">The Roster</text>
     <text x="60" y="290" font-size="11" font-style="italic" fill="#7A7264">seven chairs — doctrine, not models</text>
 
     <!-- routes.md : selection gates -->
-    <rect x="56" y="302" width="318" height="66" rx="6" fill="#F4EEE2"/>
+    <rect x="56" y="302" width="308" height="66" rx="6" fill="#F4EEE2"/>
     <text x="72" y="326" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" font-weight="bold" font-size="12" fill="#22303C">routes.md</text>
     <text x="148" y="326" font-size="11" fill="#7A7264">selection gates</text>
     <text x="72" y="346" font-size="10.5" fill="#7A7264">here_when · not_here_when</text>
@@ -178,7 +182,7 @@
       <text x="82" y="580" font-weight="bold">inspector<tspan dx="8" font-size="11" font-weight="normal" fill="#7A7264">plan-review · execution-review</tspan></text>
     </g>
 
-    <line x1="56" y1="602" x2="374" y2="602" stroke="#D9CFBC" stroke-width="1"/>
+    <line x1="56" y1="602" x2="364" y2="602" stroke="#D9CFBC" stroke-width="1"/>
     <text x="72" y="624" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" font-size="10.5" fill="#22303C">models: chains.json</text>
     <text x="72" y="642" font-size="10.5" fill="#7A7264">never from persona files</text>
   </g>
@@ -225,30 +229,30 @@
     <text x="708" y="642" font-size="9.5" fill="#7A7264" text-anchor="middle">cleanup · scope noted</text>
   </g>
 
-  <!-- ============ EXECUTE RUN (goal-armed child session) ============ -->
+  <!-- ============ CONDUCTOR — EXECUTION CONTINUATION (same persona, new goal-armed session) ============ -->
   <g>
-    <rect x="620" y="724" width="320" height="110" rx="10" fill="#22303C" opacity="0.07"/>
-    <rect x="620" y="720" width="320" height="110" rx="10" fill="#FFFDF8" stroke="#0E7568" stroke-width="1.5"/>
-    <text x="640" y="750" font-size="16" font-weight="bold" fill="#22303C">EXECUTE RUN</text>
-    <rect x="796" y="732" width="124" height="22" rx="11" fill="#E3EFEA"/>
-    <text x="858" y="747" font-size="10.5" font-weight="bold" fill="#0E7568" text-anchor="middle">goal-armed child</text>
-    <text x="640" y="776" font-size="11.5" fill="#22303C">goal = order content · budget + turn cap</text>
-    <text x="640" y="796" font-size="11.5" fill="#22303C">waves &amp; swarms · owns worktrees · sole merger</text>
-    <text x="640" y="818" font-size="11.5" font-weight="bold" fill="#B3362B">&#215; never writes the work order</text>
+    <rect x="560" y="724" width="380" height="134" rx="10" fill="#22303C" opacity="0.07"/>
+    <rect x="560" y="720" width="380" height="134" rx="10" fill="#0E7568"/>
+    <text x="580" y="748" font-size="14" font-weight="bold" fill="#FFFFFF">CONDUCTOR — EXECUTION CONTINUATION</text>
+    <text x="580" y="766" font-size="11" font-style="italic" fill="#D7E8E2">same persona · same rules · sole writer — continued</text>
+    <text x="580" y="788" font-size="11.5" fill="#EAF4F0">goal = order content · budget + turn cap</text>
+    <text x="580" y="806" font-size="11.5" fill="#EAF4F0">dispatch · worktrees · merging — as the conductor</text>
+    <text x="580" y="826" font-size="11.5" font-weight="bold" fill="#FFFFFF">writes the same work order</text>
+    <text x="580" y="842" font-size="11.5" font-weight="bold" fill="#FFFFFF">summary + path · state transitions</text>
   </g>
 
-  <!-- ============ WORKERS ============ -->
+  <!-- ============ WORKERS (goal-free children of the continuation) ============ -->
   <g>
-    <rect x="620" y="868" width="280" height="60" rx="8" fill="#F4EEE2"/>
-    <text x="640" y="890" font-size="11.5" font-weight="bold" fill="#22303C">WORKERS — goal-free, briefed</text>
+    <rect x="620" y="892" width="280" height="60" rx="8" fill="#F4EEE2"/>
+    <text x="640" y="914" font-size="11.5" font-weight="bold" fill="#22303C">WORKERS — its goal-free children</text>
     <g font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" font-size="10" text-anchor="middle">
-      <rect x="640" y="898" width="78" height="20" rx="4" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="0.8"/>
-      <text x="679" y="912" fill="#22303C">worker/high</text>
-      <rect x="726" y="898" width="48" height="20" rx="4" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="0.8"/>
-      <text x="750" y="912" fill="#22303C">artist</text>
-      <rect x="782" y="898" width="78" height="20" rx="4" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="0.8"/>
-      <text x="821" y="912" fill="#22303C">seeker/docs</text>
-      <text x="876" y="912" fill="#7A7264">…</text>
+      <rect x="640" y="922" width="78" height="20" rx="4" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="0.8"/>
+      <text x="679" y="936" fill="#22303C">worker/high</text>
+      <rect x="726" y="922" width="48" height="20" rx="4" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="0.8"/>
+      <text x="750" y="936" fill="#22303C">artist</text>
+      <rect x="782" y="922" width="78" height="20" rx="4" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="0.8"/>
+      <text x="821" y="936" fill="#22303C">seeker/docs</text>
+      <text x="876" y="936" fill="#7A7264">…</text>
     </g>
   </g>
 
@@ -262,54 +266,54 @@
   </g>
 
   <!-- ============ NATIVE ADAPTERS band ============ -->
-  <text x="40" y="976" font-size="13" font-weight="bold" letter-spacing="1" fill="#22303C">NATIVE OPENCHAMBER ADAPTERS</text>
-  <text x="330" y="976" font-size="10.5" font-style="italic" fill="#7A7264">executes &amp; projects</text>
+  <text x="40" y="1000" font-size="13" font-weight="bold" letter-spacing="1" fill="#22303C">NATIVE OPENCHAMBER ADAPTERS</text>
+  <text x="330" y="1000" font-size="10.5" font-style="italic" fill="#7A7264">executes &amp; projects</text>
 
   <g>
     <!-- Lead -->
-    <rect x="40" y="992" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
-    <text x="54" y="1016" font-size="12.5" font-weight="bold" fill="#22303C">Lead</text>
-    <text x="54" y="1034" font-size="10" fill="#7A7264">delegation · briefing</text>
-    <text x="54" y="1048" font-size="10" fill="#7A7264">overview</text>
-    <text x="54" y="1066" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; conductor</text>
+    <rect x="40" y="1016" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
+    <text x="54" y="1040" font-size="12.5" font-weight="bold" fill="#22303C">Lead</text>
+    <text x="54" y="1058" font-size="10" fill="#7A7264">delegation · briefing</text>
+    <text x="54" y="1072" font-size="10" fill="#7A7264">overview</text>
+    <text x="54" y="1090" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; conductor</text>
     <!-- Memory -->
-    <rect x="201" y="992" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
-    <text x="215" y="1016" font-size="12.5" font-weight="bold" fill="#22303C">Memory</text>
-    <text x="215" y="1034" font-size="10" fill="#7A7264">append-only</text>
-    <text x="215" y="1048" font-size="10" fill="#7A7264">routing log</text>
-    <text x="215" y="1066" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; conductor writes</text>
+    <rect x="201" y="1016" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
+    <text x="215" y="1040" font-size="12.5" font-weight="bold" fill="#22303C">Memory</text>
+    <text x="215" y="1058" font-size="10" fill="#7A7264">append-only</text>
+    <text x="215" y="1072" font-size="10" fill="#7A7264">routing log</text>
+    <text x="215" y="1090" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; conductor writes</text>
     <!-- Knowledge -->
-    <rect x="362" y="992" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
-    <text x="376" y="1016" font-size="12.5" font-weight="bold" fill="#22303C">Knowledge</text>
-    <text x="376" y="1034" font-size="10" fill="#7A7264">suborders as todos</text>
-    <text x="376" y="1048" font-size="10" fill="#7A7264">projection only</text>
-    <text x="376" y="1066" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; work order</text>
+    <rect x="362" y="1016" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
+    <text x="376" y="1040" font-size="12.5" font-weight="bold" fill="#22303C">Knowledge</text>
+    <text x="376" y="1058" font-size="10" fill="#7A7264">suborders as todos</text>
+    <text x="376" y="1072" font-size="10" fill="#7A7264">projection only</text>
+    <text x="376" y="1090" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; work order</text>
     <!-- Workflows -->
-    <rect x="523" y="992" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
-    <text x="537" y="1016" font-size="12.5" font-weight="bold" fill="#22303C">Workflows</text>
-    <text x="537" y="1034" font-size="10" fill="#7A7264">swarm dispatch</text>
-    <text x="537" y="1048" font-size="10" fill="#7A7264">mass-omoc: M2</text>
-    <text x="537" y="1066" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; execute run</text>
+    <rect x="523" y="1016" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
+    <text x="537" y="1040" font-size="12.5" font-weight="bold" fill="#22303C">Workflows</text>
+    <text x="537" y="1058" font-size="10" fill="#7A7264">swarm dispatch</text>
+    <text x="537" y="1072" font-size="10" fill="#7A7264">mass-omoc: M2</text>
+    <text x="537" y="1090" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; continuation</text>
     <!-- Worktrees -->
-    <rect x="684" y="992" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
-    <text x="698" y="1016" font-size="12.5" font-weight="bold" fill="#22303C">Worktrees</text>
-    <text x="698" y="1034" font-size="10" fill="#7A7264">wave isolation</text>
-    <text x="698" y="1048" font-size="10" fill="#7A7264">merge authority</text>
-    <text x="698" y="1066" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; execute run</text>
+    <rect x="684" y="1016" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
+    <text x="698" y="1040" font-size="12.5" font-weight="bold" fill="#22303C">Worktrees</text>
+    <text x="698" y="1058" font-size="10" fill="#7A7264">wave isolation</text>
+    <text x="698" y="1072" font-size="10" fill="#7A7264">merge authority</text>
+    <text x="698" y="1090" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; continuation</text>
     <!-- Goal -->
-    <rect x="845" y="992" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
-    <text x="859" y="1016" font-size="12.5" font-weight="bold" fill="#22303C">Goal</text>
-    <text x="859" y="1034" font-size="10" fill="#7A7264">wake + completion</text>
-    <text x="859" y="1048" font-size="10" fill="#7A7264">audit</text>
-    <text x="859" y="1066" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; execute run</text>
+    <rect x="845" y="1016" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
+    <text x="859" y="1040" font-size="12.5" font-weight="bold" fill="#22303C">Goal</text>
+    <text x="859" y="1058" font-size="10" fill="#7A7264">wake + completion</text>
+    <text x="859" y="1072" font-size="10" fill="#7A7264">audit</text>
+    <text x="859" y="1090" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; continuation</text>
     <!-- Notify -->
-    <rect x="1006" y="992" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
-    <text x="1020" y="1016" font-size="12.5" font-weight="bold" fill="#22303C">Notify</text>
-    <text x="1020" y="1034" font-size="10" fill="#7A7264">the human, only</text>
-    <text x="1020" y="1048" font-size="10" fill="#7A7264">when needed</text>
-    <text x="1020" y="1066" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; human</text>
+    <rect x="1006" y="1016" width="149" height="84" rx="8" fill="#FFFDF8" stroke="#D9CFBC" stroke-width="1"/>
+    <text x="1020" y="1040" font-size="12.5" font-weight="bold" fill="#22303C">Notify</text>
+    <text x="1020" y="1058" font-size="10" fill="#7A7264">the human, only</text>
+    <text x="1020" y="1072" font-size="10" fill="#7A7264">when needed</text>
+    <text x="1020" y="1090" font-size="9.5" font-style="italic" fill="#A8641F">&#8594; human</text>
   </g>
 
   <!-- ============ footer ============ -->
-  <text x="40" y="1102" font-size="9.5" fill="#7A7264">oh-my-openchamber v2 · one artifact, one writer, one law · adapters execute &amp; project, never a second truth · ADR-0001</text>
+  <text x="40" y="1126" font-size="9.5" fill="#7A7264">oh-my-openchamber v2 · one artifact, one writer, one law · execution = the same conductor, continued · adapters never a second truth · ADR-0001</text>
 </svg>

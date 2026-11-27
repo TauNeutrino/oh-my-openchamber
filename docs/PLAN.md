@@ -21,7 +21,7 @@ Fünf Begriffe tragen die Architektur (kanonisch im [Glossar](GLOSSARY.md)):
 
 **Das eine Gesetz:** *Kein Zustandswechsel ohne Evidenz.* Die fünf Tore, die unabhängige Prüfung, die Goal-Audit, das Zurückschicken belegloser Berichte und ESCALATE sind sechs Durchsetzungen desselben Gesetzes an verschiedenen Grenzen — keine sechs unabhängigen Regeln.
 
-**Die eine Wahrheit:** `.openchamber/orders/<slug>.md` — eine Datei, versioniert, review-bar, compaction-sicher. Der **Dirigent ist immer ihr einziger Schreiber**. Subagenten und der Ausführungs-Lauf schreiben Evidenz-Dateien unter `.openchamber/orders/<slug>/evidence/`; während der Lauf bleibt die zentrale Datei bei Zusammenfassung + Pfad, bei Fertigstellung übernimmt der Dirigent die Zusammenfassung und schließt den Übergang.
+**Die eine Wahrheit:** `.openchamber/orders/<slug>.md` — eine Datei, versioniert, review-bar, compaction-sicher. Der **Dirigent ist immer ihr einziger Schreiber**, auch in seiner Ausführungs-Fortsetzung. Subagenten schreiben Evidenz-Dateien unter `.openchamber/orders/<slug>/evidence/`; während der Lauf bleibt die zentrale Datei bei Zusammenfassung + Pfad, bei Fertigstellung schließt der Dirigent den Übergang.
 
 ## 3. Der Lebenszyklus
 
@@ -30,7 +30,7 @@ Sechs Zustände, vier Protokolle: `blocked` wird von `running.md` §5 regiert, `
 | Zustand | Was geschieht | Writer |
 |---|---|---|
 | `draft` | Interview → Entwerfen → Verfeinern ↔ Prüfen (Schleife) → Genehmigungs-Tor | Dirigent |
-| `approved` | read-only Preflight; besteht er, wird der Ausführungs-Lauf angelegt, Routen und Wellen gesetzt | Dirigent |
+| `approved` | read-only Preflight; besteht er, wird die Ausführungs-Fortsetzung des Dirigenten angelegt, Routen und Wellen gesetzt | Dirigent |
 | `running` | Dispatch → Gates → Evidenz → Übergang; blockierte Suborders sofort triagieren | Dirigent (Evidenz kommt von außen) |
 | `blocked` | nur wenn der kritische Pfad keine ausführbare Arbeit mehr hat; Grund + Lösungsweg stehen im Artefakt | Dirigent |
 | `completed` | Abschluss-Welle: Plan-Treue, Code-Qualität über Grenzen, echte Oberfläche, Ideal-State | Dirigent |
@@ -85,22 +85,22 @@ Kein sechstes Tor „Mensch": Der Mensch kommt über Risiko-Deckel, uneingelöst
 ## 7. Die Zustands-Protokolle
 
 - **`draft`:** Recherche zuerst (seeker), Absicht CLEAR/UNCLEAR, Owner-Entscheidungen immer Fragen, Kurz-Brief, Lücken-Schleife (plan-consultant als Protokoll-Schritt), Szenario-Vertrag, Artefakt schreiben, inspector/plan-review bis OKAY, Nutzer-Freigabe.
-- **`approved`:** read-only Preflight (Referenzen, Annahmen, Basis-Checks, Integrations-Zweig) — besteht er: Ausführungs-Lauf anlegen, sonst zurück zu `draft` mit Befund.
+- **`approved`:** read-only Preflight (Referenzen, Annahmen, Basis-Checks, Integrations-Zweig) — besteht er: Ausführungs-Fortsetzung des Dirigenten anlegen, sonst zurück zu `draft` mit Befund.
 - **`running`:** Wellen, Swarms, Routen, Gates, Evidenz-Pfade, sofortige Blocker-Triage. Der Dirigent schreibt den Auftrag; die Ausführung liefert.
 - **`completion`:** F1 Plan-Treue · F2 Code-Qualität · F3 echte Oberfläche · F4 Ideal-State. Kein `completed` mit heimlichen Resten: abgebrochene Suborders müssen aus dem Scope genommen oder ersetzt sein.
 
 ## 8. Autonomie ohne Doppelsteuerung
 
-Der Agent kann kein Goal auf seine eigene laufende Session setzen — aber er kann eine Session **mit** Goal anlegen. Deshalb ist der **Ausführungs-Lauf ein eigenes, mit Ziel geborenes Kind**: Der Dirigent legt es mit `goal` + `goalTokenBudget` an, Objective = Inhalt des WorkOrder, Budget = Plan-Schätzung, Turn-Kappe = erwartete Iterationen. Der serverseitige Audit hält den Lauf wach, bis der Zielzustand belegt ist; der Lauf endet jeden Turn mit *Done / Verified / Remaining / Needs from user*. Arbeiter bleiben goal-frei.
+Der Agent kann kein Goal auf seine eigene laufende Session setzen — aber er kann eine Session **mit** Goal anlegen. Deshalb ist die Ausführung eine **Fortsetzung des Dirigenten**: dieselbe Persona, dieselben Regeln, dieselbe Schreiberschaft, nur in einer neuen, Goal-bewaffneten Session. Der Dirigent legt sie mit `goal` + `goalTokenBudget` an; Objective = Inhalt des WorkOrder, Budget = Plan-Schätzung, Turn-Kappe = erwartete Iterationen. Es gibt **keinen zweiten Dirigenten und keine Übergabe der Verantwortung**.
 
-Der Lauf besitzt Worktrees und Merge-Autorität, **nicht** die kanonische Datei; er meldet Evidenz an den Dirigenten, der zusammenfasst und Übergänge schließt. Auf `budgetLimited` oder uneingelöstem kritischem Blocker kommt eine Nachricht an den Menschen — keine Pollerei, kein ständiges Eingreifen.
+Der serverseitige Audit hält diese Fortsetzung wach, bis der Zielzustand belegt ist; sie endet jeden Turn mit *Done / Verified / Remaining / Needs from user*. Die Musiker bleiben goal-frei. Die Fortsetzung besitzt Worktrees und Merge-Autorität **als Dirigent**, nicht als separate Rolle; sie schreibt weiterhin den kanonischen Auftrag. Auf `budgetLimited` oder uneingelöstem kritischem Blocker kommt eine Nachricht an den Menschen — keine Pollerei, kein ständiges Eingreifen.
 
 ## 9. Native Adapter
 
 | OpenChamber-Mechanik | Rolle im Modell |
 |---|---|
 | Lead | Delegation, Briefing, Übersicht für den Dirigenten |
-| Goal | Wachhalt- und Abschluss-Audit am Ausführungs-Lauf |
+| Goal | Wachhalt- und Abschluss-Audit an der Ausführungs-Fortsetzung des Dirigenten |
 | Knowledge | Projektion der Suborders als Todos; nie zweite Wahrheit |
 | Memory | Append-only Routing-Verlauf (Route + Ergebnis); Lern-Datensatz |
 | Workflows | Schwarm-Dispatch; mass-omoc (Abhängigkeitsgraph) nach M2 |
@@ -121,6 +121,6 @@ IntentGate als Keyword-Hook · Team Mode · Lifecycle-Hooks · LSP/AST-Werkzeuge
 ## 12. Offene Punkte
 
 - Konkrete Modell-Ketten pro Persona/Tier anhand der aktiven Anbieter (Pilot).
-- Bestätigt der Pilot einen nativen Agenten-Parameter pro Kind-Session? Bis dahin: Persona-Doktrin + Overlay wird vom Dirigenten ins Briefing gelesen.
+- Bestätigt der Pilot einen nativen Agenten-Parameter pro Arbeiter-Kind-Session? Bis dahin: Persona-Doktrin + Overlay wird vom Dirigenten ins Briefing gelesen.
 - Familien-Overlays für GPT/Claude erst bei belegtem Bedarf.
 - Öffentlicher Name des Dirigenten („conductor" als Dateiname ist gesetzt).

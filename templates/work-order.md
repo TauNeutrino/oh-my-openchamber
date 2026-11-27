@@ -88,7 +88,7 @@ Gap (GAP-<n>): <was heute fehlt>
 
 ## Runtime pointers
 
-- Execute session: <id>
+- Execution continuation session: <id>
 - Goal: <Objective-Zusammenfassung; vollständiger Inhalt = dieses Artefakt>
 - Worktrees: <Pfade>
 - Blocked reason: <Grund + nächster Lösungsversuch, nur wenn blockiert>
