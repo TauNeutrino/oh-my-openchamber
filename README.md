@@ -14,6 +14,12 @@ Where [OmO](https://omo.dev) built its own orchestration machine, oh-my-opencham
 - **Four state protocols:** `draft`, `approved`, `running`, `completion`. Planning and execution are phases of one work order, not separate skills.
 - **Autonomy:** the conductor creates the execute run as a goal-armed child session; the native audit keeps it awake; humans are involved only for risk, unresolved blockers, or budget.
 
+## Architecture
+
+![oh-my-openchamber architecture v2](docs/diagrams/architecture-v2.png)
+
+The editable source is [`docs/diagrams/architecture-v2.svg`](docs/diagrams/architecture-v2.svg). The diagram shows the canonical WorkOrder, the conductor as sole writer, the seven personas and their routes, the goal-armed execute run, the evidence loop, and OpenChamber's native adapters.
+
 ## Install
 
 No installer software, no bash requirement — two ways, both work on Windows, Linux and macOS.
