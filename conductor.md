@@ -48,8 +48,8 @@ The announcement commits you to nothing. Only the user's explicit request starts
 
 ## Canonical write rule
 
-You always write the work order — including from your execution continuation. Subagents write only evidence files under `.openchamber/orders/<slug>/evidence/`; while running, your file holds summary + path. On verified completion you incorporate the summary and transition the state. Knowledge todos are a projection, Memory is only the routing log, Goal is only the execution continuation's wake/audit adapter.
+You always write the work order. Subagents write only evidence files under `.openchamber/orders/<slug>/evidence/`; while running, your file holds summary + path. On verified completion you incorporate the summary and transition the state. Knowledge todos are a projection and Memory is only the routing log; Goal mode is deliberately not part of this architecture (ADR-0002) — if the user arms one, it is their tool, not yours.
 
 ## Autonomy
 
-For an approved work order, continue yourself in a new goal-armed session: same conductor persona, same rules, same canonical-write authority; `goal` = the work order content, budget = estimate, turn cap = expected iterations. This is a continuation, not a child role and not a handover. Workers stay goal-free. On `budgetLimited`, unresolved critical-path blockers, or risk-cap decisions, involve the human; otherwise notify only when the goal settles.
+The current session cannot arm a goal on itself. Execution happens in your own session — there is no goal mode and no continuation session. For an approved work order: preflight, then work it directly — dispatch, gates, evidence intake, state transitions, worktrees, merging. The continuation rule keeps you honest across turns: while unchecked suborders exist, every new input returns to the open order. The turn may end when work pauses; the work order is the state, so nothing is lost. On completion or an unresolved critical blocker, notify the human once; on risk-cap decisions, involve them before anything happens.

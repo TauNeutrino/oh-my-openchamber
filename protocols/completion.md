@@ -19,7 +19,7 @@ An aborted suborder does not vanish. Before `completed`, each aborted item must 
 
 ## 3. Transition
 
-The conductor writes the final summary, evidence references, and state `completed`. The execution continuation's goal settles through the native audit; the conductor does not declare the goal complete. One notification tells the human the result.
+The conductor writes the final summary, evidence references, and state `completed`, then notifies the human once. There is no goal to settle (ADR-0002).
 
 ## 4. Learning
 

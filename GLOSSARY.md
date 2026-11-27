@@ -45,12 +45,8 @@ Zuerst ein State des Suborders; der ganze WorkOrder ist blockiert, sobald auf de
 _Avoid_: Paused — pausiert ist eine bewusste Entscheidung, blockiert ist ein ungelöstes Hindernis.
 
 **Conductor (Dirigent)**:
-Der Orchestrator, der Absicht und Risiko verwaltet, Routen setzt und den kanonischen WorkOrder schreibt; er ist keine Persona.
-_Avoid_: Lead-Agent, Worker — er spielt kein Instrument, er leitet.
-
-**Execution continuation (Ausführungs-Fortsetzung)**:
-Eine neue Session, in der derselbe Dirigent mit derselben Persona, denselben Regeln und derselben Schreiberschaft weiterarbeitet — nur mit einem Goal versehen. Sie ist keine eigene Rolle und kein Kind-Agent.
-_Avoid_: Execute run, Kind-Session, zweiter Dirigent — das waren Namen für einen Transport-Adapter, nicht für ein Domänenobjekt.
+Der Orchestrator, der Absicht und Risiko verwaltet, Routen setzt und den kanonischen WorkOrder schreibt; er ist keine Persona. Die Ausführung läuft in seiner eigenen Session, ohne Goal-Modus (ADR-0002).
+_Avoid_: Lead-Agent, Worker — er spielt kein Instrument, er leitet. Execute run, Kind-Session, Fortsetzungs-Session, zweiter Dirigent — gestrichen; das waren Namen für einen Transport-Adapter, nicht für ein Domänenobjekt.
 
 **Adapter**:
 Eine native OpenChamber-Mechanik, die einen Teil des WorkOrder-Lebenszyklus ausführt oder darstellt, ohne selbst das Domänenmodell zu bilden.

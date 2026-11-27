@@ -3,7 +3,7 @@
 > So that an orchestra sounds good, every musician must play in sync.
 > We keep the beat and bring the best out of the instruments.
 
-**oh-my-openchamber** is an agent pack for [OpenChamber](https://docs.openchamber.dev): a conductor, seven personas, and one canonical **work order** — pure configuration and prompt work on OpenChamber's native machinery (leads, goals, knowledge, memory, workflows, worktrees). No plugin code, no second engine.
+**oh-my-openchamber** is an agent pack for [OpenChamber](https://docs.openchamber.dev): a conductor, seven personas, and one canonical **work order** — pure configuration and prompt work on OpenChamber's native machinery (leads, knowledge, memory, workflows, worktrees). No plugin code, no second engine.
 
 Where [OmO](https://omo.dev) built its own orchestration machine, oh-my-openchamber writes the score for the machine OpenChamber already ships:
 
@@ -12,13 +12,13 @@ Where [OmO](https://omo.dev) built its own orchestration machine, oh-my-opencham
 - **Seven personas:** `seeker` (codebase/docs overlays), `worker` (quick/low/high/deep tier overlays), `artist`, `writer`, `academic`, `architect`, `inspector` (plan-review/execution-review overlays). No model ids live in persona files; `chains.json` resolves them per route.
 - **Routing metadata:** `routes.md` holds selection gates separately from persona doctrine; routes may carry task-specific `skills`, and every worker returns through `templates/return-contract.md`.
 - **Four state protocols:** `draft`, `approved`, `running`, `completion`. Planning and execution are phases of one work order, not separate skills.
-- **Autonomy:** the conductor continues itself in a goal-armed execution session — same persona, same rules, same canonical-write authority; the native audit keeps it awake. Humans are involved only for risk, unresolved blockers, or budget.
+- **Autonomy:** execution runs in the conductor's own session — no goal mode, no continuation session (ADR-0002). The continuation rule and the work order carry the state; humans are involved only for risk, unresolved blockers, or completion.
 
 ## Architecture
 
 ![oh-my-openchamber architecture v2](docs/diagrams/architecture-v2.png)
 
-The editable source is [`docs/diagrams/architecture-v2.svg`](docs/diagrams/architecture-v2.svg). The diagram shows the canonical WorkOrder, the conductor as sole writer, the seven personas and their routes, the conductor's goal-armed execution continuation, the evidence loop, and OpenChamber's native adapters.
+The editable source is [`docs/diagrams/architecture-v2.svg`](docs/diagrams/architecture-v2.svg). The diagram shows the canonical WorkOrder, the conductor as sole writer and executor, the seven personas and their routes, the evidence loop, and OpenChamber's native adapters.
 
 ## Install
 

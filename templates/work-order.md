@@ -8,8 +8,6 @@ risk: low | standard | high
 writer: conductor
 created: <YYYY-MM-DD>
 updated: <YYYY-MM-DD>
-execute_session: <session-id or null>
-goal_budget: <tokens or null>
 ```
 
 ## Ideal state
@@ -88,8 +86,7 @@ Gap (GAP-<n>): <was heute fehlt>
 
 ## Runtime pointers
 
-- Execution continuation session: <id>
-- Goal: <Objective-Zusammenfassung; vollständiger Inhalt = dieses Artefakt>
+- Session: <conductor session id>
 - Worktrees: <Pfade>
 - Blocked reason: <Grund + nächster Lösungsversuch, nur wenn blockiert>
 - Aborted leftovers: <bewusst aus dem Scope genommene Reste, nur wenn aborted>

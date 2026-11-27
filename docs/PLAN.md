@@ -19,7 +19,7 @@ Fünf Begriffe tragen die Architektur (kanonisch im [Glossar](GLOSSARY.md)):
 - **Evidence:** unveränderliche Beleg-Dateien. Die zentrale Datei hält Zusammenfassung + Pfad.
 - **Adapter:** native OpenChamber-Mechanik, die einen Teil des Lebenszyklus ausführt oder darstellt.
 
-**Das eine Gesetz:** *Kein Zustandswechsel ohne Evidenz.* Die fünf Tore, die unabhängige Prüfung, die Goal-Audit, das Zurückschicken belegloser Berichte und ESCALATE sind sechs Durchsetzungen desselben Gesetzes an verschiedenen Grenzen — keine sechs unabhängigen Regeln.
+**Das eine Gesetz:** *Kein Zustandswechsel ohne Evidenz.* Die fünf Tore, die unabhängige Prüfung, das Zurückschicken belegloser Berichte, die Preflight-Prüfung und ESCALATE sind sechs Durchsetzungen desselben Gesetzes an verschiedenen Grenzen — keine sechs unabhängigen Regeln.
 
 **Die eine Wahrheit:** `.openchamber/orders/<slug>.md` — eine Datei, versioniert, review-bar, compaction-sicher. Der **Dirigent ist immer ihr einziger Schreiber**, auch in seiner Ausführungs-Fortsetzung. Subagenten schreiben Evidenz-Dateien unter `.openchamber/orders/<slug>/evidence/`; während der Lauf bleibt die zentrale Datei bei Zusammenfassung + Pfad, bei Fertigstellung schließt der Dirigent den Übergang.
 
@@ -30,9 +30,9 @@ Sechs Zustände, vier Protokolle: `blocked` wird von `running.md` §5 regiert, `
 | Zustand | Was geschieht | Writer |
 |---|---|---|
 | `draft` | Interview → Entwerfen → Verfeinern ↔ Prüfen (Schleife) → Genehmigungs-Tor | Dirigent |
-| `approved` | read-only Preflight; besteht er, wird die Ausführungs-Fortsetzung des Dirigenten angelegt, Routen und Wellen gesetzt | Dirigent |
+| `approved` | read-only Preflight; besteht er, läuft die Ausführung in derselben Dirigenten-Session, Routen und Wellen gesetzt | Dirigent |
 | `running` | Dispatch → Gates → Evidenz → Übergang; blockierte Suborders sofort triagieren | Dirigent (Evidenz kommt von außen) |
-| `blocked` | nur wenn der kritische Pfad keine ausführbare Arbeit mehr hat; Grund + Lösungsweg stehen im Artefakt | Dirigent |
+| `blocked` | kritischer Pfad ohne ausführbare Arbeit; Grund + Lösungsweg stehen im Artefakt | Dirigent |
 | `completed` | Abschluss-Welle: Plan-Treue, Code-Qualität über Grenzen, echte Oberfläche, Ideal-State | Dirigent |
 | `aborted` | aufräumen, offene Reste und Scope-Änderungen benennen | Dirigent |
 
@@ -85,27 +85,27 @@ Kein sechstes Tor „Mensch": Der Mensch kommt über Risiko-Deckel, uneingelöst
 ## 7. Die Zustands-Protokolle
 
 - **`draft`:** Recherche zuerst (seeker), Absicht CLEAR/UNCLEAR, Owner-Entscheidungen immer Fragen, Kurz-Brief, Lücken-Schleife (plan-consultant als Protokoll-Schritt), Szenario-Vertrag, Artefakt schreiben, inspector/plan-review bis OKAY, Nutzer-Freigabe.
-- **`approved`:** read-only Preflight (Referenzen, Annahmen, Basis-Checks, Integrations-Zweig) — besteht er: Ausführungs-Fortsetzung des Dirigenten anlegen, sonst zurück zu `draft` mit Befund.
+- **`approved`:** read-only Preflight (Referenzen, Annahmen, Basis-Checks, Integrations-Zweig) — besteht er: Ausführung in derselben Dirigenten-Session, sonst zurück zu `draft` mit Befund.
 - **`running`:** Wellen, Swarms, Routen, Gates, Evidenz-Pfade, sofortige Blocker-Triage. Der Dirigent schreibt den Auftrag; die Ausführung liefert.
 - **`completion`:** F1 Plan-Treue · F2 Code-Qualität · F3 echte Oberfläche · F4 Ideal-State. Kein `completed` mit heimlichen Resten: abgebrochene Suborders müssen aus dem Scope genommen oder ersetzt sein.
 
-## 8. Autonomie ohne Doppelsteuerung
+## 8. Autonomie ohne Goal-Modus
 
-Der Agent kann kein Goal auf seine eigene laufende Session setzen — aber er kann eine Session **mit** Goal anlegen. Deshalb ist die Ausführung eine **Fortsetzung des Dirigenten**: dieselbe Persona, dieselben Regeln, dieselbe Schreiberschaft, nur in einer neuen, Goal-bewaffneten Session. Der Dirigent legt sie mit `goal` + `goalTokenBudget` an; Objective = Inhalt des WorkOrder, Budget = Plan-Schätzung, Turn-Kappe = erwartete Iterationen. Es gibt **keinen zweiten Dirigenten und keine Übergabe der Verantwortung**.
+Der Agent kann sich kein Goal auf seine eigene laufende Session setzen — und wir bauen dafür keinen Workaround (siehe [ADR-0002](adr/0002-no-goal-mode-in-execution.md)). Der Dirigent führt den freigegebenen Auftrag **in seiner eigenen Session** aus: Arbeit, Gates, Evidenz-Übernahme, Zustandswechsel — alles dort, wo die Wahrheit schon liegt.
 
-Der serverseitige Audit hält diese Fortsetzung wach, bis der Zielzustand belegt ist; sie endet jeden Turn mit *Done / Verified / Remaining / Needs from user*. Die Musiker bleiben goal-frei. Die Fortsetzung besitzt Worktrees und Merge-Autorität **als Dirigent**, nicht als separate Rolle; sie schreibt weiterhin den kanonischen Auftrag. Auf `budgetLimited` oder uneingelöstem kritischem Blocker kommt eine Nachricht an den Menschen — keine Pollerei, kein ständiges Eingreifen.
+Die Wachhalt-Disziplin ist die **Continuation-Regel**: Solange unchecked Teilaufträge existieren, führt jeder neue Input zurück zum offenen Auftrag. Der Turn endet, wenn die Arbeit pausiert; der nächste Input setzt sie fort — der kanonische Auftrag ist der Zustand, also geht nichts verloren. Wer volle Autonomie will, kann ein Goal selbst bewaffnen; dann ist es sein Werkzeug, kein Architekturteil. Bei fertigem Auftrag oder kritischem Blocker kommt genau eine Nachricht an den Menschen.
 
 ## 9. Native Adapter
 
 | OpenChamber-Mechanik | Rolle im Modell |
 |---|---|
 | Lead | Delegation, Briefing, Übersicht für den Dirigenten |
-| Goal | Wachhalt- und Abschluss-Audit an der Ausführungs-Fortsetzung des Dirigenten |
+| Goal | optional: nur wenn der Nutzer es selbst bewaffnet; kein Architekturteil (ADR-0002) |
 | Knowledge | Projektion der Suborders als Todos; nie zweite Wahrheit |
 | Memory | Append-only Routing-Verlauf (Route + Ergebnis); Lern-Datensatz |
 | Workflows | Schwarm-Dispatch; mass-omoc (Abhängigkeitsgraph) nach M2 |
 | Worktrees | Isolation der Ausführungs-Wellen |
-| Notify | genau dann, wenn der Mensch gebraucht wird |
+| Notify | genau dann, wenn der Mensch gebraucht wird: Fertigstellung oder kritischer Blocker |
 | Secrets | private API-Schlüssel, nie im Repo |
 
 ## 10. Was gestrichen bleibt

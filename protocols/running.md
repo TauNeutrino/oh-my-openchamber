@@ -1,6 +1,6 @@
 # Protocol: running
 
-Owner of the work order: conductor — including its execution continuation. Workers own only their evidence files.
+Owner of the work order: conductor, working in its own session. Workers own only their evidence files. There is no goal mode (ADR-0002).
 
 ## 1. Dispatch
 
@@ -39,8 +39,8 @@ A blocked suborder is triaged immediately by the conductor: clarify, retry, re-r
 
 ## 6. Continuation
 
-While the approved plan has unchecked suborders, steer every new input back to it first — *"we are mid-execute; how does this touch the plan?"* New work requires an explicit park, amendment, or completion. The goal audit is the native wake mechanism; this rule is its prompt-level counterpart.
+While the approved plan has unchecked suborders, steer every new input back to it first — *"we are mid-execute; how does this touch the plan?"* New work requires an explicit park, amendment, or completion. The turn may end when work pauses; the work order carries the state, so a later input resumes exactly there.
 
-## 7. Budget and merge
+## 7. Merge and report
 
-On `budgetLimited`, the conductor asks the human for a raise; progress lives in the work order. Each wave works in its own worktree. **Only the conductor merges**, after its checkboxes carry evidence. On settle, one notification reaches the human.
+Each wave works in its own worktree. **Only the conductor merges**, after its checkboxes carry evidence. Completion or an unresolved critical blocker is reported to the human once.
