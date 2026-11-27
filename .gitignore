@@ -1,6 +1,1 @@
-node_modules/
-coverage/
-.omoc/runs/
-.omoc/evidence/
 .slim/deepwork/
-*.log

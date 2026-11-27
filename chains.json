@@ -1,18 +1,40 @@
 {
-  "_doc": "Ordered model fallback chains per agent — the single source of models; agent files carry no model ids. Rungs are tried in order on provider failure, dispatched by the conductor. Behavior-critical agents (conductor, deep, writing, plan-*) keep family-pure chains so their prompt always matches the family that serves them; cheap agents may mix families — their Core Directives are temperament-neutral, and direct use without the conductor falls back to the session model. ultrabrain and architect are deliberately family-coupled to a single rung: when the family is missing, the conductor reports it and routes to the nearest available agent with a flag in the rationale line.",
-  "chains": {
-    "conductor": ["opencode-go/glm-5.3#high", "opencode-go/glm-5.3-flash#max"],
-    "explorer": ["opencode-go/glm-5.3-flash#low", "opencode-go/deepseek-v4.1-flash#low", "opencode/hy4-flash-free"],
-    "librarian": ["opencode-go/deepseek-v4.1-flash#low", "opencode-go/glm-5.3-flash#low"],
-    "plan-consultant": ["opencode-go/glm-5.3#high", "opencode-go/glm-5.3-flash#high"],
-    "plan-reviewer": ["opencode-go/glm-5.3#max", "opencode-go/glm-5.3#high"],
-    "quick": ["opencode-go/mimo-v2.6-flash", "opencode/hy4-flash-free", "opencode-go/glm-5.3-flash#low"],
-    "general-low": ["opencode-go/minimax-m3.1-flash#medium", "opencode-go/minimax-m3.1-flash#high"],
-    "general-high": ["opencode-go/glm-5.3-flash#high", "opencode-go/glm-5.3-flash#max"],
-    "visual-engineering": ["opencode-go/glm-5.3-flash#high", "opencode-go/glm-5.3-flash#max"],
-    "deep": ["opencode-go/glm-5.3#high", "opencode-go/glm-5.3#max"],
-    "ultrabrain": ["openai/gpt-6.2-astra#max"],
-    "architect": ["anthropic/claude-fable-5-2#xhigh"],
-    "writing": ["opencode-go/glm-5.3#low", "opencode-go/glm-5.3-flash#low"]
+  "_doc": "Single source of models. Personas carry no model ids. A route resolves persona + tier/overlay to a rung; the conductor dispatches with it. Behavior-critical chains stay family-pure; cheap tiers and overlays may mix families. Missing family: nearest available route with a flag in the rationale line.",
+  "conductor": ["opencode-go/glm-5.3#high", "opencode-go/glm-5.3-flash#max"],
+  "personas": {
+    "seeker": {
+      "default": ["opencode-go/glm-5.3-flash#low"],
+      "overlays": {
+        "codebase": ["opencode-go/glm-5.3-flash#low", "opencode-go/deepseek-v4.1-flash#low"],
+        "docs": ["opencode-go/deepseek-v4.1-flash#low", "opencode-go/glm-5.3-flash#low"]
+      }
+    },
+    "worker": {
+      "tiers": {
+        "quick": ["opencode-go/mimo-v2.6-flash", "opencode/hy4-flash-free", "opencode-go/glm-5.3-flash#low"],
+        "low": ["opencode-go/minimax-m3.1-flash#medium", "opencode-go/minimax-m3.1-flash#high"],
+        "high": ["opencode-go/glm-5.3-flash#high", "opencode-go/glm-5.3-flash#max"],
+        "deep": ["opencode-go/glm-5.3#high", "opencode-go/glm-5.3#max"]
+      }
+    },
+    "artist": {
+      "default": ["opencode-go/glm-5.3-flash#high", "opencode-go/glm-5.3-flash#max"]
+    },
+    "writer": {
+      "default": ["opencode-go/glm-5.3#low", "opencode-go/glm-5.3-flash#low"]
+    },
+    "academic": {
+      "default": ["openai/gpt-6.2-astra#max"]
+    },
+    "architect": {
+      "default": ["anthropic/claude-fable-5-2#xhigh"]
+    },
+    "inspector": {
+      "default": ["opencode-go/glm-5.3#max", "opencode-go/glm-5.3#high"],
+      "overlays": {
+        "plan-review": ["opencode-go/glm-5.3#max", "opencode-go/glm-5.3#high"],
+        "execution-review": ["opencode-go/glm-5.3#max", "opencode-go/glm-5.3#high"]
+      }
+    }
   }
 }
