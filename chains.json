@@ -9,6 +9,7 @@
     "quick": ["opencode-go/mimo-v2.6-flash", "opencode/hy4-flash-free", "opencode-go/glm-5.3-flash#low"],
     "general-low": ["opencode-go/minimax-m3.1-flash#medium", "opencode-go/minimax-m3.1-flash#high"],
     "general-high": ["opencode-go/glm-5.3-flash#high", "opencode-go/glm-5.3-flash#max"],
+    "visual-engineering": ["opencode-go/glm-5.3-flash#high", "opencode-go/glm-5.3-flash#max"],
     "deep": ["opencode-go/glm-5.3#high", "opencode-go/glm-5.3#max"],
     "ultrabrain": ["openai/gpt-6.2-astra#max"],
     "architect": ["anthropic/claude-fable-5-2#xhigh"],

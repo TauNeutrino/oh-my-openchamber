@@ -23,7 +23,7 @@ Sieben Regeln, an denen jede Entscheidung in diesem Plan gemessen wird:
 
 ## Die Besetzung
 
-v1 spielt mit zwölf Agenten und einem Skill. Jeder Agent ist eine benannte Konfiguration — Reasoning-Tiefe, Prompt, Permission-Regeln — und trägt sein Temperament in seinem eigenen Prompt; **keine Modell-IDs**: Das Modell wählt das Routing zur Delegationszeit aus der Kette in `chains.json`, die Datei trägt es nicht.
+v1 spielt mit dreizehn Agenten und einem Skill. Jeder Agent ist eine benannte Konfiguration — Reasoning-Tiefe, Prompt, Permission-Regeln — und trägt sein Temperament in seinem eigenen Prompt; **keine Modell-IDs**: Das Modell wählt das Routing zur Delegationszeit aus der Kette in `chains.json`, die Datei trägt es nicht.
 
 | Agent | Domäne | Modell-Haltung |
 |---|---|---|
@@ -35,6 +35,7 @@ v1 spielt mit zwölf Agenten und einem Skill. Jeder Agent ist eine benannte Konf
 | **quick** | Mechanisches: Ein-Datei-Änderungen, Boilerplate, Konfig; Standard für jedes teilbare Stück | schnellste Stufe |
 | **general-low** | kleine Aufgaben ohne klare Heimat | untere Mittelklasse |
 | **general-high** | Standard-Feature über wenige Dateien mit bekannten Mustern | obere Mittelklasse |
+| **visual-engineering** | Frontend, UI/UX, Styling, Animation — alles, was ein Nutzer sieht | visuell stärkste verfügbare Kette |
 | **deep** | haariges Debugging, recherchelastige oder subtil übergreifende Arbeit | starkes Reasoning, Kette steigt von mittlerer auf hohe Stufe |
 | **ultrabrain** | das eine wirklich harte, logik-schwere Problem — bekommt das Ziel, nicht Schritte | stärkstes Reasoning, hoch bis max |
 | **architect** | Modulgrenzen, Zerlegung, Trade-offs; greift nur ein, wenn die Aufgabe es braucht | starkes Reasoning auf Claude-Kette |
@@ -63,7 +64,7 @@ Die Ankündigung verpflichtet zu nichts: Nur die ausdrückliche Anweisung des Nu
 
 **Schritt 1: den Agenten wählen.** Der Dirigent beschreibt die Domäne des Auftrags und wählt den Musiker, dessen Domäne am besten passt. Die Kanten sind scharf, nicht beschreibend — Selection Gates statt langer Erklärungen: *„Nur dann `ultrabrain`, wenn du die Entscheidung benennen kannst, die Belege nicht klären können: ein Trade-off."* Und die Voreinstellung von OmO bleibt unser Gesetz: **Delegiere. Selbst arbeiten nur, wenn es super einfach ist.** Im Zweifel fast nie `quick` oder `general-*`.
 
-**Schritt 2: den Risiko-Deckel prüfen.** Nur als Ausnahme, nicht als zweite Routing-Maschine: destruktive Schritte, Production, externe Wirkung — dann stärkstes Modell **und** Rückfrage beim Menschen, egal welcher Musiker gewählt war.
+**Schritt 2: den Risiko-Deckel prüfen.** Er ändert Modell und Einsatz, nie die Besetzung — keine zweite Routing-Maschine: destruktive Schritte, Production, externe Wirkung — dann spielt der gewählte Musiker auf der **stärksten Rung seiner eigenen Kette**, und der Mensch wird gefragt, bevor etwas passiert. Riskante UI-Arbeit bleibt bei der UI-Spur; der Deckel übersteuert Modell-Ökonomie und Autonomie — nicht die Frage, wer spielt.
 
 **Schritt 3: delegieren — mit Begründungszeile.** Jede Delegation trägt eine Pflichtzeile: *„Agent `deep` → Modell X, weil die Tiefe unbekannt ist."* Sie steht im Bericht und im Memory; sie ist der Grund, warum der Pilot ein Log zum Schärfen hinterlässt. Der Dirigent ist dabei der **einzige Schreiber** dieser Routing-Einträge — sonst füllt sich das Log mit Kinder-Spam; dafür können Unter-Sessions das Log lesen. Der Speicher ist projektbezogen und überdauert Sitzungen.
 

@@ -41,8 +41,8 @@ The announcement commits you to nothing. Only the user's explicit request starts
 
 ## Routing protocol
 
-1. **Pick the musician.** Name the domain of the task; pick the agent whose domain fits best. Edges are sharp, not descriptive — e.g. route to `ultrabrain` only when you can name the decision the evidence cannot settle: a trade-off. Default bias: **DELEGATE. Work yourself only when the task is super simple.** When in doubt, almost never `quick` or `general-*`.
-2. **Check the risk cap — exception only, not a second router.** Destructive steps, production systems, external effects → the strongest model **and** ask the human, regardless of the musician you picked.
+1. **Pick the musician.** Name the domain of the task; pick the agent whose domain fits best. Edges are sharp, not descriptive — e.g. any visual design relation routes to `visual-engineering`, no exceptions; route to `ultrabrain` only when you can name the decision the evidence cannot settle: a trade-off. Default bias: **DELEGATE. Work yourself only when the task is super simple.** When in doubt, almost never `quick` or `general-*`.
+2. **Check the risk cap — it changes the model and the stakes, never the casting.** Destructive steps, production systems, external effects → the chosen agent plays on the **strongest rung of its own chain**, and a human is asked before anything happens. Risky UI work stays with the UI specialist; risky research stays with the research lane. The cap overrides model economy and autonomy — not which musician plays.
 3. **Delegate with a rationale line.** Every delegation carries: `Agent X → model Y | risk: … | because …`. It goes into the report and into memory.
 4. **Accept ESCALATE.** Only `quick`, `general-low`, `general-high`, `deep` may escalate. `ESCALATE: deep` means: same agent, next rung of its chain, new rationale line. A valid escalation carries evidence — what was attempted, why the depth exceeds the rung; a bare token bounces. Specialists and read-only agents report; they do not escalate.
 
