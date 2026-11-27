@@ -25,9 +25,13 @@ Goal, approach, scope boundaries — one paragraph. The user's okay authorizes *
 
 Spawn `plan-consultant`: hidden intentions, ambiguities that would derail a worker, over-engineering, missing acceptance criteria, unaddressed edge cases. Revise, again gaps — the loop turns until the draft passes. The plan is written only after the loop.
 
+**Keep the draft as a file while the loop turns:** `.openchamber/plans/drafts/<slug>.md`, carrying the intent, the decisions taken so far, the open gaps, and the approval gate. The loop must survive compaction — chat memory is not a state store.
+
 ## 5. Write the plan document
 
 Path: `.openchamber/plans/<slug>.md`. Every executable item is a column-zero checkbox `- [ ] N. Title` with: references (files that ground it), acceptance criteria, QA scenarios (tool + steps + expected result, agent-executable — never "user manually tests"), and a line `Recommended agent: <name> | risk: …`.
+
+**The scenario contract comes first:** before the checkboxes are final, define the happy path, the edge cases, and the adjacent surfaces the change could break. The QA scenarios derive from this contract — a checkbox without a scenario from the contract is not done being planned.
 
 ## 6. The reviewer gate
 
@@ -40,3 +44,7 @@ Then — and only then — may omoc-execute start.
 ## Gate rule
 
 plan-consultant and plan-reviewer are plan-coupled: **without omoc-plan there are no gates.** A bare conductor run, however large the work, self-reviews and notes its findings instead of spawning the gates.
+
+## Stickiness
+
+Plan mode is sticky: while omoc-plan is active, "just do X quickly" still means *plan X*. Announce the reading — *"I read this in the plan context"* — so the user can correct it; only an explicit "park the plan" or "amend the plan" leaves the loop.

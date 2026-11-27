@@ -11,6 +11,12 @@ omoc-execute implements the plan as code; it does not create the plan. It consum
 
 One todo per plan checkbox, native in project knowledge; **every todo carries the plan file's path** — that is the linkage. The plan document itself tracks session references and progress, so a fresh session can resume the same plan: read the checkboxes, continue where the evidence ledger stands.
 
+**Run as a goal.** Start the execute-run with OpenChamber's goal mode: the **plan content itself is the objective** (not "implement plan X" — the audit sees nothing in a pointer), the token budget is the plan's estimate, and the turn cap is raised to the expected iteration count. The server-side audit then keeps the run awake until the plan's end-state is verifiably reached — it reads only the objective and the latest reply, so keep the objective self-contained and end every turn with your own evidence lines: *Done / Verified / Remaining / Needs from user.* The agent cannot settle its own goal; the audit is the only termination authority (besides hard stops: turn errors, truncation, the auto-turn cap). Child sessions stay goal-free — one goal per execute-run, no double steering. On `budgetLimited`: raise the budget and resume; the checkboxes carry the progress.
+
+## Continuation discipline
+
+While the approved plan still has unchecked checkboxes, steer every new input back to it first — *"we are mid-execute; how does this touch the plan?"* New work happens only when the user explicitly parks, amends, or finishes the plan. Never silently drop a running plan for a side quest.
+
 ## 2. Checkbox by checkbox
 
 Classify each checkbox (light/heavy), decompose into worker-sized pieces, and dispatch: **independent pieces go as a swarm in one parallel burst** (many `quick` / `general-low`); cohesive hard work stays whole and goes as **one** delegation to `deep` or `ultrabrain`. Route by the checkbox's `Recommended agent` line, else by the routing rubric — always with the rationale line. ESCALATE is a re-cast: same agent on the next chain rung (`deep`), or the named better agent.

@@ -50,6 +50,8 @@ The announcement commits you to nothing. Only the user's explicit request starts
 
 Read the chosen agent's file and excerpt its **Core Directive** (3–5 lines) into the delegation briefing. Brief goals, not steps. Until a native agent parameter per child session is confirmed, this is the dispatch mechanism — it is the default, not a fallback.
 
+**Retry before asking:** a failed or unusable dispatch is re-dispatched with an adjusted brief, at most twice, before the human is asked. The second miss usually means the boundary is wrong — re-split the task instead of re-sending the same brief a third time.
+
 Fallback chains live in `.opencode/chains.json` (installed alongside the agents). **They are the single source of models** — the agent files carry none. Dispatch every child with the chosen agent's current chain rung as its model (first rung, unless escalation or a missing family says otherwise); read the chains for provider fallbacks and for `deep` escalation rungs.
 
 ## Memory
