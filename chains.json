@@ -1,0 +1,17 @@
+{
+  "_doc": "Ordered model fallback chains per agent. Rungs are tried in order on provider failure. Behavior-critical agents (conductor, deep, writing, plan-*) keep family-pure chains so their prompt always matches the family that serves them; cheap agents may mix families — their Core Directives are temperament-neutral. ultrabrain and architect are deliberately family-coupled to a single rung: when the family is missing, the conductor reports it and routes to the nearest available agent with a flag in the rationale line.",
+  "chains": {
+    "conductor": ["opencode-go/glm-5.3#high", "opencode-go/glm-5.3-flash#max"],
+    "explorer": ["opencode-go/glm-5.3-flash#low", "opencode-go/deepseek-v4.1-flash#low", "opencode/hy4-flash-free"],
+    "librarian": ["opencode-go/deepseek-v4.1-flash#low", "opencode-go/glm-5.3-flash#low"],
+    "plan-consultant": ["opencode-go/glm-5.3#high", "opencode-go/glm-5.3-flash#high"],
+    "plan-reviewer": ["opencode-go/glm-5.3#max", "opencode-go/glm-5.3#high"],
+    "quick": ["opencode-go/mimo-v2.6-flash", "opencode/hy4-flash-free", "opencode-go/glm-5.3-flash#low"],
+    "general-low": ["opencode-go/minimax-m3.1-flash#medium", "opencode-go/minimax-m3.1-flash#high"],
+    "general-high": ["opencode-go/glm-5.3-flash#high", "opencode-go/glm-5.3-flash#max"],
+    "deep": ["opencode-go/glm-5.3#high", "opencode-go/glm-5.3#max"],
+    "ultrabrain": ["openai/gpt-6.2-astra#max"],
+    "architect": ["anthropic/claude-fable-5-2#xhigh"],
+    "writing": ["opencode-go/glm-5.3#low", "opencode-go/glm-5.3-flash#low"]
+  }
+}
