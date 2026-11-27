@@ -7,7 +7,7 @@
 
 Where [OmO](https://omo.dev) built its own orchestration machine, oh-my-openchamber writes the *score* for the machine OpenChamber already ships:
 
-- **The cast** — 12 agents (`agents/*.md`), each a named configuration: model, reasoning variant, prompt, permissions. `quick`, `general-low`, `general-high` are the risk rungs of normal coding; `deep` works, `ultrabrain` decides.
+- **The cast** — 12 agents (`agents/*.md`), each a named persona: prompt, reasoning depth, permissions — no model ids; the model comes from the routing chain (`chains.json`) at dispatch time. `quick`, `general-low`, `general-high` are the risk rungs of normal coding; `deep` works, `ultrabrain` decides.
 - **The conductor** — a lead agent with a thin score: intent gate, routing rubric, risk cap, evidence-carrying `ESCALATE`, a rationale line on every delegation, and a learning loop (log automatically, change the rubric only with the human's approval).
 - **The working modes** — `omoc-plan` (interview → gap loop → plan document → reviewer gate) and `omoc-execute` (checkbox by checkbox, five gates per checkbox, only the conductor merges).
 

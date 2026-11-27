@@ -7,7 +7,7 @@ Modelle haben Temperamente. Eines denkt tief und gründlich, eines denkt archite
 
 OpenChamber bringt dieselbe Maschine fertig mit. Ein **Lead** ist eine Session, die eine Arbeitsrichtung verantwortet: Sie delegiert Teile an eigene Unter-Sessions, prüft, was zurückkommt, und führt dem Nutzer eine Übersicht über dem Chat. Ihr **Briefing** — Ziel, Ergebnisse, Regeln — liegt außerhalb des Repos und übersteht jede Gesprächslänge. Dazu kommen Workflows, Memory und Knowledge als native Funktionen. Keine dieser Teile muss oh-my-openchamber bauen.
 
-Das ist der Anlass für oh-my-openchamber: **keine zweite Engine, sondern das, was der Maschine fehlt — die Partitur.** Wer sitzt im Orchester? Welche Stimme bekommt welche Aufgabe? Und nach welchem Satz wählt der Dirigent — unser Lead — das Modell jeder Unter-Sitzung? Wir liefern die Besetzung: Agenten mit Modell, Reasoning-Stufe, Prompt und Permission-Regeln. Wir liefern die Regeln: Routing, Risiko-Deckel, Prüf-Doktrin. Wir liefern die Arbeitsmodi: omoc-plan und omoc-execute. Alles als Konfiguration und Prompt-Arbeit auf OpenChamber-Bordmitteln — kein Plugin-Code, keine eigene Engine. Dieser Plan legt fest, was v1 enthält, wie es funktioniert und was bewusst draußen bleibt.
+Das ist der Anlass für oh-my-openchamber: **keine zweite Engine, sondern das, was der Maschine fehlt — die Partitur.** Wer sitzt im Orchester? Welche Stimme bekommt welche Aufgabe? Und nach welchem Satz wählt der Dirigent — unser Lead — das Modell jeder Unter-Sitzung? Wir liefern die Besetzung: Agenten mit Reasoning-Tiefe, Prompt und Permission-Regeln — das Modell kommt zur Delegationszeit aus der Kette. Wir liefern die Regeln: Routing, Risiko-Deckel, Prüf-Doktrin. Wir liefern die Arbeitsmodi: omoc-plan und omoc-execute. Alles als Konfiguration und Prompt-Arbeit auf OpenChamber-Bordmitteln — kein Plugin-Code, keine eigene Engine. Dieser Plan legt fest, was v1 enthält, wie es funktioniert und was bewusst draußen bleibt.
 
 ## Grundsätze
 
@@ -23,7 +23,7 @@ Sieben Regeln, an denen jede Entscheidung in diesem Plan gemessen wird:
 
 ## Die Besetzung
 
-v1 spielt mit zwölf Agenten und einem Skill. Jeder Agent ist eine benannte Konfiguration — Modell, Reasoning-Stufe, Prompt, Permission-Regeln — und trägt sein Temperament in seinem eigenen Prompt.
+v1 spielt mit zwölf Agenten und einem Skill. Jeder Agent ist eine benannte Konfiguration — Reasoning-Tiefe, Prompt, Permission-Regeln — und trägt sein Temperament in seinem eigenen Prompt; **keine Modell-IDs**: Das Modell wählt das Routing zur Delegationszeit aus der Kette in `chains.json`, die Datei trägt es nicht.
 
 | Agent | Domäne | Modell-Haltung |
 |---|---|---|

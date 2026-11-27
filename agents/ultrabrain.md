@@ -1,7 +1,6 @@
 ---
 description: One genuinely hard, logic-heavy problem — receives the goal, not steps. Coupled to the GPT flagship family; reports itself unavailable when that family is not connected.
 mode: subagent
-model: openai/gpt-6.2-astra#max
 permissions:
   edit: allow
   bash: allow

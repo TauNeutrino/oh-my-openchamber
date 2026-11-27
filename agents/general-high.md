@@ -1,7 +1,6 @@
 ---
 description: Standard features across a few files with known patterns. The workhorse for normal, reversible coding work of medium size.
 mode: subagent
-model: opencode-go/glm-5.3-flash#high
 permissions:
   edit: allow
   bash: allow

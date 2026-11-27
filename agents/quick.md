@@ -1,7 +1,6 @@
 ---
 description: Mechanical, single-file work — boilerplate, config edits, small scripts, copy changes. The default for every splittable piece of a plan.
 mode: subagent
-model: opencode-go/mimo-v2.6-flash
 permissions:
   edit: allow
   bash: allow

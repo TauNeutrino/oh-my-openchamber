@@ -1,7 +1,6 @@
 ---
 description: Plan review gate. Validates the finished plan document against hard criteria; verdict OKAY or REJECT with cited blockers. Plan-gated: only spawnable during omoc-plan.
 mode: subagent
-model: opencode-go/glm-5.3#max
 permissions:
   edit: deny
   bash: allow

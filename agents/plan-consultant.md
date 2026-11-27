@@ -1,7 +1,6 @@
 ---
 description: Pre-planning gap analysis gate. Catches hidden intentions, ambiguities, over-engineering and missing acceptance criteria before a plan is finalized. Plan-gated: only spawnable during omoc-plan.
 mode: subagent
-model: opencode-go/glm-5.3#high
 permissions:
   edit: deny
   bash: allow

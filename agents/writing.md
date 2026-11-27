@@ -1,7 +1,6 @@
 ---
 description: Documentation and prose — READMEs, guides, commit messages, release notes, user-facing copy.
 mode: subagent
-model: opencode-go/glm-5.3#low
 permissions:
   edit: allow
   bash: allow

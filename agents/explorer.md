@@ -1,7 +1,6 @@
 ---
 description: Fast codebase search and reconnaissance. Use for "where is X?", pattern discovery, quick understanding of files and structure. Read-only.
 mode: subagent
-model: opencode-go/glm-5.3-flash#low
 permissions:
   edit: deny
   bash: allow

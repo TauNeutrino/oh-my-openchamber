@@ -1,7 +1,6 @@
 ---
 description: Small tasks that fit no other category — light work, slightly wider than a one-file fix.
 mode: subagent
-model: opencode-go/minimax-m3.1-flash#medium
 permissions:
   edit: allow
   bash: allow

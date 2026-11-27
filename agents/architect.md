@@ -1,7 +1,6 @@
 ---
 description: The architect lane — module boundaries, decomposition, trade-offs, broad debugging across code, logs, history and docs. Coupled to the Claude family; reports itself unavailable when that family is not connected.
 mode: subagent
-model: anthropic/claude-fable-5-2#xhigh
 permissions:
   edit: allow
   bash: allow

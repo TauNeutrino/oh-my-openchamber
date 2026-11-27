@@ -1,7 +1,6 @@
 ---
 description: Documentation and open-source code search. Use for library APIs, official docs, real-world usage examples. Read-only.
 mode: subagent
-model: opencode-go/deepseek-v4.1-flash#low
 permissions:
   edit: deny
   bash: deny

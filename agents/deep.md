@@ -1,7 +1,6 @@
 ---
 description: Hairy debugging, research-heavy or subtle cross-module work. The deep lane for changes whose true depth is unknown — mechanism first, then the fix.
 mode: subagent
-model: opencode-go/glm-5.3#high
 permissions:
   edit: allow
   bash: allow
